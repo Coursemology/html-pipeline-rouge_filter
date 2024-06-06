@@ -17,9 +17,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "html-pipeline", ">= 1.11"
-  spec.add_dependency "rouge", ">= 2.0.0", "< 4"
-  spec.add_dependency "activesupport"
+  spec.required_ruby_version = ">= 3.1"
+  spec.required_rubygems_version = ">= 3.3.22"
 
-  spec.required_ruby_version = ">= 2.0"
+  spec.add_dependency "html-pipeline", ">= 3"
+  spec.add_dependency "rouge", ">= 4"
+  spec.add_dependency "selma", "~> 0.1"
+  spec.add_dependency "zeitwerk", "~> 2.5"
 end
