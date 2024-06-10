@@ -88,7 +88,7 @@ Metrics/MethodLength:
 # Offense count: 1
 Style/ClassAndModuleCamelCase:
   Exclude:
-    - 'lib/html/pipeline/rouge_filter/version.rb'
+    - 'lib/html_pipeline/node_filter/rouge_filter.rb'
 
 # Offense count: 1
 # Configuration parameters: EnforcedStyle, SupportedStyles.
@@ -123,7 +123,7 @@ Style/IfUnlessModifier:
 # Cop supports --auto-correct.
 Style/MutableConstant:
   Exclude:
-    - 'lib/html/pipeline/rouge_filter/version.rb'
+    - 'lib/html_pipeline/node_filter/rouge_filter.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -150,7 +150,7 @@ Style/StringLiterals:
     - 'Rakefile'
     - 'html-pipeline-rouge_filter.gemspec'
     - 'lib/html/pipeline/rouge_filter.rb'
-    - 'lib/html/pipeline/rouge_filter/version.rb'
+    - 'lib/html_pipeline/node_filter/rouge_filter.rb'
     - 'test/rouge_filter_test.rb'
     - 'test/test_helper.rb'
 

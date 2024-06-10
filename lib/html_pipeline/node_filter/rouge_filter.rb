@@ -1,4 +1,6 @@
-require "html_pipeline/rouge_filter/version"
+# frozen_string_literal: true
+
+require "html_pipeline"
 require "html_pipeline/node_filter"
 
 HTMLPipeline.require_dependency("rouge", "RougeFilter")
@@ -6,7 +8,11 @@ HTMLPipeline.require_dependency("rouge", "RougeFilter")
 class HTMLPipeline
   class NodeFilter
     class RougeFilter < NodeFilter
-      SELECTOR = Selma::Selector.new(match_element: "pre", match_text_within: "pre")
+      # In Zeitwerk scheme, putting VERSION in the separate file while defining it under HTMLPipeline::NodeFilter::RougeFilter
+      # will cause the superclass mismatch error, since HTMLPipeline::NodeFilter::RougeFilter is deemed as loaded twice
+      VERSION = "2.0.0".freeze
+
+      SELECTOR = Selma::Selector.new(match_element: "pre, br, lang, class", match_text_within: "pre")
 
       def selector
         SELECTOR
@@ -16,13 +22,12 @@ class HTMLPipeline
         default = must_str(context[:highlight])
         @lang = element["lang"] || default
 
-        if replace_br
-          element.css("br").each do |br|
-            br.replace("\n")
-          end
+        if replace_br && element.tag_name == "br"
+          element.after("\n", as: :html)
+          element.remove
         end
 
-        klass = element["class"]
+        klass = element["class"] || "highlight"
         element["class"] = "#{klass} #{default_css_class}-#{@lang}" if include_lang?
       end
 
@@ -68,6 +73,10 @@ class HTMLPipeline
 
       def must_str(text)
         text && text.to_s
+      end
+
+      def rename_br(elem)
+        elem.sub("br", "\n")
       end
     end
   end
