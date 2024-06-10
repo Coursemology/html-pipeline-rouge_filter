@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem "html-pipeline", ">= 3"
+
 # Specify your gem's dependencies in twemoji.gemspec
 gemspec
 
