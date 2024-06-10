@@ -24,4 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rouge", ">= 4"
   spec.add_dependency "selma", "~> 0.1"
   spec.add_dependency "zeitwerk", "~> 2.5"
+
+  spec.add_development_dependency "appraisal", "~> 2.1"
 end
